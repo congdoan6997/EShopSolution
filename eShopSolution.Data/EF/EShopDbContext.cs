@@ -1,4 +1,5 @@
-﻿using eShopSolution.Data.Entities;
+﻿using eShopSolution.Data.Configurations;
+using eShopSolution.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
@@ -7,7 +8,7 @@ namespace eShopSolution.Data.EF
 {
     public class EShopDbContext : DbContext
     {
-        public EShopDbContext([NotNullAttribute] DbContextOptions options) : base(options)
+        public EShopDbContext( DbContextOptions options) : base(options)
         {
         }
 
@@ -15,6 +16,21 @@ namespace eShopSolution.Data.EF
         {
             //fluent API
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+            //modelBuilder.ApplyConfiguration(new OrderConfiguration());
+            //modelBuilder.ApplyConfiguration(new AppConfigConfiguration());
+            //modelBuilder.ApplyConfiguration(new CartConfiguration());
+            //modelBuilder.ApplyConfiguration(new CategoryConfiguration());
+            //modelBuilder.ApplyConfiguration(new CategoryTranslationConfiguration());
+            //modelBuilder.ApplyConfiguration(new ContactConfiguration());
+            //modelBuilder.ApplyConfiguration(new LanguageConfiguration());
+            //modelBuilder.ApplyConfiguration(new OrderDetailConfiguration());
+            //modelBuilder.ApplyConfiguration(new ProductConfiguration());
+            //modelBuilder.ApplyConfiguration(new ProductInCategoryConfiguration());
+            //modelBuilder.ApplyConfiguration(new ProductTranslationConfiguration());
+            //modelBuilder.ApplyConfiguration(new PromotionConfiguration());
+            //modelBuilder.ApplyConfiguration(new TransactionConfiguration());
+
             //   base.OnModelCreating(modelBuilder);
         }
 
