@@ -1,7 +1,6 @@
 ﻿using eShopSolution.Data.Enums;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace eShopSolution.Data.Entities
 {
@@ -12,11 +11,10 @@ namespace eShopSolution.Data.Entities
         public Guid UserId { get; set; }
         public string ShipName { get; set; }
         public string ShipAddress { get; set; }
-        public string ShopEmail { get; set; }
+        public string ShipEmail { get; set; }
         public string ShipPhoneNumber { get; set; }
         public OrderStatus OrderStatus { get; set; }
 
         public List<OrderDetail> OrderDetails { get; set; }
-
     }
 }

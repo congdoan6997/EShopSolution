@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace eShopSolution.Data.Entities
+﻿namespace eShopSolution.Data.Entities
 {
     public class OrderDetail
     {
@@ -12,6 +8,5 @@ namespace eShopSolution.Data.Entities
         public decimal Price { get; set; }
         public Order Order { get; set; }
         public Product Product { get; set; }
-
     }
 }

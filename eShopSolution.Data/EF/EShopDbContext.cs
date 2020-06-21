@@ -1,9 +1,7 @@
 ﻿using eShopSolution.Data.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Text;
+using System.Reflection;
 
 namespace eShopSolution.Data.EF
 {
@@ -12,6 +10,14 @@ namespace eShopSolution.Data.EF
         public EShopDbContext([NotNullAttribute] DbContextOptions options) : base(options)
         {
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            //fluent API
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            //   base.OnModelCreating(modelBuilder);
+        }
+
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<AppConfig> AppConfigs { get; set; }
@@ -25,8 +31,5 @@ namespace eShopSolution.Data.EF
         public DbSet<Promotion> Promotions { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<ProductInCategory> ProductInCategories { get; set; }
-
-        
-
     }
 }
