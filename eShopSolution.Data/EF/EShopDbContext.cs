@@ -1,5 +1,6 @@
 ﻿using eShopSolution.Data.Configurations;
 using eShopSolution.Data.Entities;
+using eShopSolution.Data.Extensions;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
@@ -31,6 +32,8 @@ namespace eShopSolution.Data.EF
             //modelBuilder.ApplyConfiguration(new PromotionConfiguration());
             //modelBuilder.ApplyConfiguration(new TransactionConfiguration());
 
+            //data seed
+            modelBuilder.Seed();
             //   base.OnModelCreating(modelBuilder);
         }
 
