@@ -1,13 +1,16 @@
 ﻿using eShopSolution.Data.Configurations;
 using eShopSolution.Data.Entities;
 using eShopSolution.Data.Extensions;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 
 namespace eShopSolution.Data.EF
 {
-    public class EShopDbContext : DbContext
+    public class EShopDbContext : IdentityDbContext<AppUser,AppRole,Guid>
     {
         public EShopDbContext( DbContextOptions options) : base(options)
         {
@@ -18,19 +21,12 @@ namespace eShopSolution.Data.EF
             //fluent API
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
-            //modelBuilder.ApplyConfiguration(new OrderConfiguration());
-            //modelBuilder.ApplyConfiguration(new AppConfigConfiguration());
-            //modelBuilder.ApplyConfiguration(new CartConfiguration());
-            //modelBuilder.ApplyConfiguration(new CategoryConfiguration());
-            //modelBuilder.ApplyConfiguration(new CategoryTranslationConfiguration());
-            //modelBuilder.ApplyConfiguration(new ContactConfiguration());
-            //modelBuilder.ApplyConfiguration(new LanguageConfiguration());
-            //modelBuilder.ApplyConfiguration(new OrderDetailConfiguration());
-            //modelBuilder.ApplyConfiguration(new ProductConfiguration());
-            //modelBuilder.ApplyConfiguration(new ProductInCategoryConfiguration());
-            //modelBuilder.ApplyConfiguration(new ProductTranslationConfiguration());
-            //modelBuilder.ApplyConfiguration(new PromotionConfiguration());
-            //modelBuilder.ApplyConfiguration(new TransactionConfiguration());
+            modelBuilder.Entity<IdentityUserClaim<Guid>>().ToTable("AppUserClaims").HasKey(u => u.UserId);
+            modelBuilder.Entity<IdentityUserRole<Guid>>().ToTable("AppUserRoles").HasKey(u=> new { u.UserId,u.RoleId});
+            modelBuilder.Entity<IdentityUserLogin<Guid>>().ToTable("AppUserLogins").HasKey(u=> u.UserId);
+            modelBuilder.Entity<IdentityRoleClaim<Guid>>().ToTable("AppRoleClaims").HasKey(u => u.RoleId);
+            modelBuilder.Entity<IdentityUserToken<Guid>>().ToTable("AppUserToken").HasKey(u => u.UserId);
+
 
             //data seed
             modelBuilder.Seed();
