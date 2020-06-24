@@ -13,7 +13,7 @@ namespace eShopSolution.Data.Configurations
             builder.HasKey(_ => _.Id);
             builder.HasMany(o => o.OrderDetails).WithOne(d => d.Order);
 
-            builder.Property(x => x.OrderDate).HasDefaultValue(DateTime.Now);
+            builder.Property(x => x.OrderDate);
 
             builder.Property(x => x.ShipEmail).IsRequired().IsUnicode(false).HasMaxLength(50);
 
