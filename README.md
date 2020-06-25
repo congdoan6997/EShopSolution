@@ -10,3 +10,4 @@
 - Microsoft.Extensions.Configuration.Json
 - Microsoft.AspNetCore.Identity.EntityFrameworkCore
 - Microsoft.AspNetCore.Http.Features
+- Swashbuckle.AspNetCore

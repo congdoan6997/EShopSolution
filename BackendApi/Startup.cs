@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 
 namespace eShopSolution.BackendApi
 {
@@ -27,6 +28,10 @@ namespace eShopSolution.BackendApi
             services.AddDbContext<EShopDbContext>(op => op.UseSqlServer(Configuration.GetConnectionString(SystemConstant.MainConnectString)));
             services.AddTransient<IManageProductService, ManageProductService>();
             services.AddTransient<IStorageService, FileStorageService>();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "My EShop API", Version = "v1" });
+            });
             services.AddControllersWithViews();
         }
 
@@ -55,6 +60,11 @@ namespace eShopSolution.BackendApi
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+            });
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My EShop API V1");
             });
         }
     }
