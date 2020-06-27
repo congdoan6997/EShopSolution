@@ -1,5 +1,4 @@
-﻿using eShopSolution.Application.catalog.Products;
-using eShopSolution.Application.Common;
+﻿using eShopSolution.Application.Common;
 using eShopSolution.Data.EF;
 using eShopSolution.Data.Entities;
 using eShopSolution.Utilities;
@@ -80,7 +79,8 @@ namespace eShopSolution.Application.Catalog.Products
             }
             await _context.Products.AddAsync(item);
 
-            return await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
+            return item.Id;
         }
 
         public async Task<int> Delete(int productId)
@@ -171,7 +171,7 @@ namespace eShopSolution.Application.Catalog.Products
                 thumbnailImage.ImagePath = await this.SaveFile(request.ThumbnailImage);
                 _context.ProductImages.Update(thumbnailImage);
             }
-
+            _context.Products.Update(product);
             return await _context.SaveChangesAsync();
         }
 

@@ -1,4 +1,3 @@
-using eShopSolution.Application.catalog.Products;
 using eShopSolution.Application.Catalog.Products;
 using eShopSolution.Application.Common;
 using eShopSolution.Data.EF;
@@ -26,12 +25,14 @@ namespace eShopSolution.BackendApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<EShopDbContext>(op => op.UseSqlServer(Configuration.GetConnectionString(SystemConstant.MainConnectString)));
-            services.AddTransient<IManageProductService, ManageProductService>();
-            services.AddTransient<IStorageService, FileStorageService>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "My EShop API", Version = "v1" });
             });
+            services.AddTransient<IManageProductService, ManageProductService>();
+            services.AddTransient<IPublicProductService, PublicProductService>();
+            services.AddTransient<IStorageService, FileStorageService>();
+            
             services.AddControllersWithViews();
         }
 
@@ -65,6 +66,7 @@ namespace eShopSolution.BackendApi
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My EShop API V1");
+
             });
         }
     }

@@ -7,8 +7,8 @@ namespace eShopSolution.ViewModels.Catalog.Products
         public decimal Price { get; set; }
         public decimal OriginalPrice { get; set; }
         public int Stock { get; set; }
-        public int Id { set; get; }
-        public int ProductId { set; get; }
+        //public int Id { set; get; }
+        //public int ProductId { set; get; }
         public string Name { set; get; }
         public string Description { set; get; }
         public string Details { set; get; }

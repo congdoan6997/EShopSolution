@@ -2,7 +2,7 @@
 using eShopSolution.ViewModels.Common;
 using System.Threading.Tasks;
 
-namespace eShopSolution.Application.catalog.Products
+namespace eShopSolution.Application.Catalog.Products
 {
     public interface IManageProductService
     {
